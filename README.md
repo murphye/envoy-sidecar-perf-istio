@@ -1,6 +1,6 @@
 # Submillisecond Envoy Sidecars
 
-## Summary
+## 1) Summary
 
 This repository demonstrates how to achieve high throughput and low latencies with an Envoy sidecar when using Istio service mesh. With this demo, you can deploy 3 Java (Spring Boot WebFlux) microservices and a PostgreSQL database in Kubernetes (GKE). You can then run a series of load tests against the demo application both with and without Istio sidecars enabled.
 
@@ -10,9 +10,9 @@ Optionally, you may scale this demo up to 28,000 RPS with an end-to-end p95 late
 
 Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Envoy sidecars are up to the task for low latency and high throughput applications.
 
-## [Setup Guide](SETUP.md)
+## 2) [Setup Guide](SETUP.md)
 
-## Demo Performance Requirements
+## 3) Demo Performance Requirements
 
 When conducting performance testing, it's important to have specific performance requirements to target. Running naive performance tests with no goals in mind will create results that do not translate to the real world. For example, it's good practice to throttle a load test client at a threshold that meets performance requirements to show true latency metrics. This compares to ramming as much traffic into the application as possible which kills the latency metrics.
 
@@ -32,10 +32,10 @@ Here are the performance requirements used for the demos:
 
 Note: 30K RPS was not obtainable during testing due to a probable database bottleneck.
 
-## Demo #1 with Deployment Replication of 1 (Poor Sidecar Performance with Naive Load Testing)
+## 4) [Demo #1 with Deployment Replication of 1 (Demonstrating Poor Sidecar Performance)](DEMO_1.md)
 
-## Demo #2 with Deployment Replication of 3 (Achieving Low Latency at 10K RPS)
+## 5) [Demo #2 with Deployment Replication of 3 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
 
-## Demo #3 with Deployment Replication of 8 (Achieving 28K RPS in a Constrained Cluster)
+## 6) [Demo #3 with Deployment Replication of 8 (Achieving 28K RPS in a Constrained Cluster)](DEMO_3.md)
 
-## Recommendations and Best Practices
+## 7) [Recommendations and Best Practices](RECOMMENDATIONS.md)
