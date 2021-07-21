@@ -17,13 +17,13 @@ To run all three demos, you need to create a 9-node cluster with a machine type 
 To minimize latency, the high-CPU, 16 core machine type was used because CPU is more important than memory for running the load tests. As such, each machine only has 16 GB of memory.
 
 ```
-gcloud container clusters create load-test-envoy-sidecars-cluster --num-nodes=9 --machine-type=e2-highcpu-16
+gcloud container clusters create load-test-envoy-sidecars-cluster --num-nodes=9 --machine-type=e2-highcpu-16 --zone us-central1-a
 ```
 
 After the cluster is running, you can then obtain the credentials so you can connect to the cluster with `kubectl`.
 
 ```
-gcloud container clusters get-credentials load-test-envoy-sidecars-cluster
+gcloud container clusters get-credentials load-test-envoy-sidecars-cluster --zone us-central1-a
 kubectl get nodes
 ```
 
@@ -32,7 +32,7 @@ kubectl get nodes
 To minimize latency from a client to the Kubernetes cluster where the demo application is running, running a virtual machine in the same zone as the GKE cluster is recommended. This will give realistic numbers for a internal client that is running inside your network.
 
 ```
-gcloud compute instances create load-test-envoy-sidecars --zone=us-central1-a --image ubuntu-2104-hirsute-v20210720
+gcloud compute instances create load-test-envoy-sidecars --zone=us-central1-a
 ```
 
 After the VM is running, you can connect to it. You will want to open a separate terminal window/tab, as you will want to connect with `kubectl` from your local machine in a different terminal.
@@ -62,10 +62,11 @@ istioctl verify-install
 You can then find the `EXTERNAL-IP` for Istio Ingress by running:
 
 ```
-kubectl get svc -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
+GATEWAY_IP=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+echo $GATEWAY_IP
 ```
 
-This `EXTERNAL-IP` will be used for your load testing client.
+This `GATEWAY_IP` will be used for your load testing client.
 
 
 ## Installing `hey` onto the Virtual Machine
@@ -85,7 +86,8 @@ curl https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 --output hey
 Run `hey`:
 ```
 chmod 775 hey
+export PATH=$PATH:.
 hey
 ```
 
-**You must use the `EXTERNAL-IP` for Istio Ingress that you captured previously when you run `hey` as shown during the Demo exercises.**
+**You must use the `$GATEWAY_IP` for Istio Ingress that you captured previously when you run `hey` as shown during the Demo exercises.**
