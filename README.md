@@ -39,10 +39,7 @@ istioctl verify-install
 You can then find the `EXTERNAL-IP` for Istio Ingress by running:
 
 ```
-kubectl get svc istio-ingressgateway -n istio-system
-
-NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)                                      AGE
-istio-ingressgateway   LoadBalancer   10.20.11.18   104.197.70.65   15021:30087/TCP,80:30812/TCP,443:30377/TCP    1d
+kubectl get svc -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ```
 
 This `EXTERNAL-IP` will be used for your load testing client.
