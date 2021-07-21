@@ -32,10 +32,10 @@ Here are the performance requirements used for the demos:
 
 Note: 30K RPS was not obtainable during testing due to a probable database bottleneck.
 
-## 4) [Demo #1 with Deployment Replication of 1 (Demonstrating Poor Sidecar Performance)](DEMO_1.md)
+## 4) [Demo #1 (Poor Sidecar Performance with Naive Performance Testing)](DEMO_1.md)
 
-## 5) [Demo #2 with Deployment Replication of 3 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
+## 5) [Demo #2 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
 
-## 6) [Demo #3 with Deployment Replication of 8 (Achieving 28K RPS in a Constrained Cluster)](DEMO_3.md)
+## 6) [Demo #3 (Achieving 28K RPS in a Constrained Cluster)](DEMO_3.md)
 
 ## 7) [Recommendations and Best Practices](RECOMMENDATIONS.md)
