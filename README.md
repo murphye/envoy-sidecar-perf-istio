@@ -18,15 +18,20 @@ Setup environment:
 
 ```
 gcloud config set project PROJECT_ID
-gcloud config set compute/zone us-central-1a
+gcloud config set compute/zone us-central1-a
 gcloud config set compute/region us-central-1
-
 ```
 
 For all 3 demos, you need to create a 9-node cluster with a machine type of `e2-highcpu-16`. This will create a 144 core cluster, so don't forget to shut down your cluster after creating it! For Demo #2, a 5-node cluster would suffice, but for Demo #3 a 9-node cluster is required. 
 
 ```
 gcloud container clusters create load-test-envoy-sidecars-cluster --num-nodes=9 --machine-type=e2-highcpu-16
+```
+
+### Virtual Machine for Load Testing
+
+```
+gcloud compute instances create load-test-envoy-sidecars --zone=us-central1-a --image ubuntu-2104-hirsute-v20210720
 ```
 
 ## Installing Istio
