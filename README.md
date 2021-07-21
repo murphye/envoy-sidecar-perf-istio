@@ -12,7 +12,7 @@ Ultimately, this demo shows that with best practices for deploying applications 
 
 ## 2) [Setup Guide](SETUP.md)
 
-Please see the [Setup Guide](SETUP.md) to create a Kubernetes cluster, create a VM, and install Istio, deploy the demo application, and perform other tasks to prepare the environment.
+Please see the [Setup Guide](SETUP.md) to create a Kubernetes cluster, create a VM, and install Istio, and perform other tasks to prepare the environment.
 
 ## 3) Demo Performance Requirements
 
