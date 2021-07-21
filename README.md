@@ -12,6 +12,8 @@ Ultimately, this demo shows that with best practices for deploying applications 
 
 ## 2) [Setup Guide](SETUP.md)
 
+Please see the [Setup Guide](SETUP.md) to create a Kubernetes cluster, create a VM, and install Istio, deploy the demo application, and perform other tasks to prepare the environment.
+
 ## 3) Demo Performance Requirements
 
 When conducting performance testing, it's important to have specific performance requirements to target. Running naive performance tests with no goals in mind will create results that do not translate to the real world. For example, it's good practice to throttle a load test client at a threshold that meets performance requirements to show true latency metrics. This compares to ramming as much traffic into the application as possible which kills the latency metrics.
@@ -34,8 +36,16 @@ Note: 30K RPS was not obtainable during testing due to a probable database bottl
 
 ## 4) [Demo #1 (Poor Sidecar Performance with Naive Performance Testing)](DEMO_1.md)
 
+This demo shows how the Envoy sidecar can severely impact the performance of an application, especially when naive performance testing is applied where the numbers are skewed further.
+
 ## 5) [Demo #2 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
+
+This demo shows how the Envoy sidecar does not severely impact performance when the application is properly deployed and scaled. Load testing is done in accordance with Performance Requirements #1.
 
 ## 6) [Demo #3 (Achieving 28K RPS in a Constrained Cluster)](DEMO_3.md)
 
+This demo shows how the Envoy sidecar does not severely impact performance when the application scaled to the point of nearly saturating the cluster for CPU and memory usage. Load testing is done in accordance with Performance Requirements #2.
+
 ## 7) [Recommendations and Best Practices](RECOMMENDATIONS.md)
+
+Understand the basics for how to deploy and scale your application when taking into account an Envoy sidecar deployed with your application.
