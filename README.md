@@ -32,8 +32,6 @@ Here are the performance requirements used for the demos:
 1. At most 28 milliseconds (ms) end-to-end latency using a client within the same datacenter/zone as the cluster
 1. No HTTP errors for 1,000,000 requests (after proper warm up run)
 
-Note: 30K RPS was not obtainable during testing due to a probable database bottleneck.
-
 ## 4) [Demo #1 (Poor Sidecar Performance with Naive Performance Testing)](DEMO_1.md)
 
 This demo shows how the Envoy sidecar can severely impact the performance of an application, especially when naive performance testing is applied where the numbers are skewed further.
