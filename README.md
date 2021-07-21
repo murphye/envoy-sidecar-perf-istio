@@ -7,3 +7,13 @@ At scale, you will see the delta of latency for sidecar ingress/egress measure t
 Optionally, you may scale this demo up to nearly 30,000 RPS with an end-to-end p95 latency of ~25 ms. This demonstrates a more constrained cluster that is consuming a higher level of CPU and memory resources, but is still able to maintain acceptable performance.
 
 Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Istio/Envoy sidecars are up to the task for low latency and high throughput applications.
+
+## Cluster Setup
+
+
+## Demo with Deployment Replication of 1 (Initial Impact of Sidecar)
+
+## Demo with Deployment Replication of 3 (Low Latency at 10K RPS)
+
+## Demo with Deployment Replication of 8 (Constrained Cluster at nearly 30K RPS)
+
