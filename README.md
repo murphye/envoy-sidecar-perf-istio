@@ -14,10 +14,19 @@ Ultimately, this demo shows that with best practices for deploying applications 
 
 ### Kubernetes Cluster for Demo #1, #2, and #3
 
-For Demo #2, a 5-node cluster would suffice, but for Demo #3 a 9-node cluster is required. For the purpose of running all of the demos, here is how to create a 9-node cluster for running all of the demos:
+Setup environment:
 
 ```
-TODO
+gcloud config set project PROJECT_ID
+gcloud config set compute/zone us-central-1a
+gcloud config set compute/region us-central-1
+
+```
+
+For all 3 demos, you need to create a 9-node cluster with a machine type of `e2-highcpu-16`. This will create a 144 core cluster, so don't forget to shut down your cluster after creating it! For Demo #2, a 5-node cluster would suffice, but for Demo #3 a 9-node cluster is required. 
+
+```
+gcloud container clusters create load-test-envoy-sidecars-cluster --num-nodes=9 --machine-type=e2-highcpu-16
 ```
 
 ## Installing Istio
