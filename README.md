@@ -4,15 +4,49 @@
 
 This repository demonstrates how to achieve high throughput and low latencies with an Envoy sidecar when using Istio service mesh. With this demo, you can deploy 3 Java microservices and a PostgreSQL database in Kubernetes (GKE). You can then run a series of load tests against the demo application both with and without Istio sidecars enabled.
 
-At scale, you will see the delta of latency for sidecar ingress/egress measure to be less than 1 millisecond. This enables the demo application to have an end-to-end p95 latency of only 10 ms, at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database.
+At scale, you will see the delta of latency for Envoy sidecar ingress/egress measure to be less than 1 millisecond. This enables the demo application to have an end-to-end p95 latency of only 10 ms, at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database.
 
 Optionally, you may scale this demo up to 28,000 RPS with an end-to-end p95 latency of 28 ms. This demonstrates a more constrained cluster that is consuming a higher level of CPU and memory resources, but is still able to maintain acceptable performance.
 
-Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Istio/Envoy sidecars are up to the task for low latency and high throughput applications.
+Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Envoy sidecars are up to the task for low latency and high throughput applications.
 
 ## Kubernetes Cluster and Load Test VM Setup
 
+### Kubernetes Cluster for Demo #1, #2, and #3
+
+For Demo #2, a 5-node cluster would suffice, but for Demo #3 a 9-node cluster is required. For the purpose of running all of the demos, here is how to create a 9-node cluster for running all of the demos:
+
+```
 TODO
+```
+
+## Installing Istio
+
+Only a basic installion of Istio with the `default` profile that installs the `istiod` and `istio-ingressgateway`. All load testing is conducted through Istio Ingress from the VM where the load test client resides. No specific configuration or tuning of Istio is required to run the demos.
+
+To install Istio, simply use the `istioctl` command line tool and run:
+
+```
+istioctl install
+```
+
+After installation is completed, you can then run:
+
+```
+istioctl verify-install
+```
+
+You can then find the `EXTERNAL-IP` for Istio Ingress by running:
+
+```
+kubectl get svc istio-ingressgateway -n istio-system
+
+NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)                                      AGE
+istio-ingressgateway   LoadBalancer   10.20.11.18   104.197.70.65   15021:30087/TCP,80:30812/TCP,443:30377/TCP    1d
+```
+
+This `EXTERNAL-IP` will be used for your load testing client.
+
 
 ## Demo Performance Requirements
 
@@ -39,3 +73,5 @@ Note: 30K RPS was not obtainable during testing due to a probable database bottl
 ## Demo #2 with Deployment Replication of 3 (Achieving Low Latency at 10K RPS)
 
 ## Demo #3 with Deployment Replication of 8 (Achieving 28K RPS in a Constrained Cluster)
+
+## Recommendations and Best Practices
