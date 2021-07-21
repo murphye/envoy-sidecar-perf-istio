@@ -6,6 +6,8 @@ This repository demonstrates how to achieve high throughput and low latencies wi
 
 At scale, you will see the delta of latency for Envoy sidecar ingress/egress measure to be less than 1 millisecond. This enables the demo application to have an end-to-end p95 latency of only 10 ms, at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database.
 
+**TODO: Image**
+
 Optionally, you may scale this demo up to 28,000 RPS with an end-to-end p95 latency of 28 ms. This demonstrates a more constrained cluster that is consuming a higher level of CPU and memory resources, but is still able to maintain acceptable performance.
 
 Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Envoy sidecars are up to the task for low latency and high throughput applications.
@@ -32,7 +34,7 @@ Here are the performance requirements used for the demos:
 1. At most 28 milliseconds (ms) end-to-end latency using a client within the same datacenter/zone as the cluster
 1. No HTTP errors for 1,000,000 requests (after proper warm up run)
 
-## 4) [Demo #1 (Poor Sidecar Performance with Naive Performance Testing)](DEMO_1.md)
+## 4) [Demo #1 (Degraded Performance with Naive Performance Testing)](DEMO_1.md)
 
 This demo shows how the Envoy sidecar can severely impact the performance of an overwhelmed application when naive performance testing is applied.
 
