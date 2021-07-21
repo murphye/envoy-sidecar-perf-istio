@@ -34,7 +34,7 @@ Here are the performance requirements used for the demos:
 
 ## 4) [Demo #1 (Poor Sidecar Performance with Naive Performance Testing)](DEMO_1.md)
 
-This demo shows how the Envoy sidecar can severely impact the performance of an application, especially when naive performance testing is applied where the numbers are skewed further.
+This demo shows how the Envoy sidecar can severely impact the performance of an overwhelmed application when naive performance testing is applied.
 
 ## 5) [Demo #2 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
 
