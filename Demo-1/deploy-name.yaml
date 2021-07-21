@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: name
+  labels:
+    app: name
+    service: name
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: name
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: name
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: name
+        version: v1
+    spec:
+      serviceAccountName: name
+      containers:
+      - image: docker.io/murphye/name-service:latest
+        name: name
+        ports:
+        - containerPort: 8080
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: "app"
+                operator: In
+                values:
+                - customer
+                - person
+                # Have microservices deployed on separate nodes
+            topologyKey: "kubernetes.io/hostname"

@@ -40,7 +40,7 @@ This demo shows how the Envoy sidecar can severely impact the performance of an 
 
 This demo shows how the Envoy sidecar does not severely impact performance when the application is properly deployed and scaled. Load testing is done in accordance with Performance Requirements #1.
 
-## 6) [Demo #3 (Achieving 28K RPS in a Constrained Cluster)](DEMO_3.md)
+## 6) [Demo #3 (Achieving 28K RPS in a Saturated Cluster)](DEMO_3.md)
 
 This demo shows how the Envoy sidecar does not severely impact performance when the application scaled to the point of nearly saturating the cluster for CPU and memory usage. Load testing is done in accordance with Performance Requirements #2.
 
