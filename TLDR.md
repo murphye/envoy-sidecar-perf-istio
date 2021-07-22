@@ -8,12 +8,12 @@
 * Replication of 1: CPU usage increased 15%, Memory increased 2%
 * Replication of 3: CPU usage increased 18%, Memory decreased 5% (likely due to lower RPS)
 
-### Takeaways
+### Naive Performance Testing Takeaways
 
 * Never a good idea to do unthrottled load tests to measure sidecar performance; numbers not realistic to real world use
 * Unthrottled load tests do not trigger proper vertical CPU scaling for the pod, therefore degrading overall performance
 
-## Optimized Performance Testing with Throttled Load Tests
+## Optimized Performance Testing with Throttled Load Tests (10K RPS, p95 10 ms)
 
 * Throttled load tests should increase # of client connections while rate limiting each connection
 * Running throttled load tests against a microservices application will demonstrate much better performance while also allowing vertical scaling of CPU to accomodate the sidecar
@@ -21,7 +21,7 @@
 * Replication of 3: p95 latency increased by 20%, RPS was cut by 3%
 * Replication of 3: CPU usage increased 99% (this is a good thing), Memory increased 2%
 
-### Analysis
+### Analysis (10K RPS, p95 10 ms)
 
 1. For the p95 latency of 10 ms, the split between microservice/sidecar for a pod is approximately 5ms/5ms given the lower bound of p95 latency for the microservice is 5 ms without the sidecar
 2. Per #1, the vertical CPU scaling benefits both the microservice and the sidecar
@@ -34,16 +34,17 @@
 8. Istio docs state that [with two proxies, one handling sidecar ingress, one handling sidecar ingress add 1.7 ms of p90 latency with jitter enabled](https://istio.io/latest/docs/ops/deployment/performance-and-scalability/)
 9. Per #8, the Istio benchmarks roughly align ~1.4 p95 vs. ~1.7 p90 addional latency introduce by the sidecar (accounting for both ingress/egress across two Envoy proxies)
 
-## Takeaways (Sidecar/Envoy Proxy)
+## Takeaways (Envoy Proxy @ 10K RPS, p95 10 ms)
 
 1. For best performance of a pod with the sidecar, the goal should be to "spike" the CPU usage as much as possible for the microservice pod; this CPU spike will benefit both the microservice and the Envoy proxy
 1. CPU spikes can only be triggered by proper load testing with throttled connections; unthrottled load tests do not result in CPU spikes and therefore poor performance
 1. Expect to require an additional 1 CPU per sidecar to maintain high RPS and low latencies for 3333 RPS per pod
 1. The Envoy proxy in the Istio sidecar can be ~20% faster than [documented](https://istio.io/latest/docs/ops/deployment/performance-and-scalability/) (~1.4/1.7) when using a high-performing CPU cluster
 
-## Takeaways (Java Microservice with a Sidecar)
+## Takeaways (Java Microservice with a Sidecar @ 10K RPS, p95 10 ms)
 
 1. For applications requiring high throughput and low latency, target approx. 3333 RPS per pod with a sidecar
 2. Per #1, this will give a predictable 1 CPU per Envoy proxy CPU overhead requires to maintain high RPS and low latencies 
 3. Per #1, for a Netty-based Java microservice, target ~3 CPU per pod with a sidecar for maximum performance
 4. Per #3, if less than ~3 CPU is consumed per pod, adjust # of client connections and throttling of load test
+5. Apply proper `podAntiAffinity` rules to balance load across cluster nodes; pod placement is critical for maximizing performance
