@@ -253,7 +253,7 @@ Mem Total: 28280Mi
 * RPS: 7532 (-4690)
 * p95: 8 ms (+3)
 * CPU Total: 22998m (+4187)
-* Mem Total: 26393Mi (-1309)
+* Mem Total: 26393Mi (-1309; lower memory utlization is likely a side effect of much lower RPS and not directly due to the sidecar itself)
 
 ### Throttled Load Test
 
@@ -273,6 +273,6 @@ The throttling of the load test was intended to keep the RPS about the same. Thi
 
 ### Performance Takeaway
 
-The big takeaway here is the CPU total for the throttled load test. For 9 microservice pods, and 1 database pod, all runnning with sidecars, double the CPU is required to meet the performance requirements as opposed to without the sidecar. With the Envoy sidecars 28.3 CPU cores are required to meet the performance requirements, but without the Envoy sidecars, 14.5 CPU cores are required. 
+The big takeaway here is the CPU total for the throttled load test. For 9 microservice pods, and 1 database pod, all runnning with sidecars, double the CPU is required to meet the performance requirements as opposed to without the sidecar. With the Envoy sidecars, 28.3 CPU cores are required to meet the performance requirements, but without the Envoy sidecars, 14.5 CPU cores are required. 
 
 The key to maintaining performance when employing the Istio sidecars is maximizing CPU utilization with proper deployment scaling, tuning, and testing. **Using more CPU  is not a bad thing**, as the benefits offered by Envoy sidecars and a service mesh are often worth the extra CPU required to maintain high throughput and low latency.
