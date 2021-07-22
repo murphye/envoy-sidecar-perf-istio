@@ -1,7 +1,7 @@
 
 ## Naive Performance Testing with Unthrottled Load Tests
 
-* Running unthrottled load tests against a microservices application can be devastating on performance of a high throughput, low latency application
+* Running unthrottled load tests against a microservices application can skew performance of a high throughput, low latency application
 * For a non-sidecar/with-sidecar comparison:
 * Replication of 1: p95 latency increased by 90%, RPS was cut by 44%
 * Replication of 3: p95 latency increased by 38%, RPS was cut by 38%
