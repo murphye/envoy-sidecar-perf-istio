@@ -283,5 +283,8 @@ The key to maintaining performance when employing the Envoy sidecars is maximizi
 
 ### Open Question
 
-*Can swithing sidecar communication to Unix Domain Sockets reduce the CPU overhead of the Envoy proxy under high load?*
+*What is an acceptable price (in CPU allocations) to maintain high throughput and low latencies when adding an Envoy sidecar to a pod?*
 
+### Research Area
+
+*Can switching sidecar communication to Unix Domain Sockets reduce the CPU overhead of the Envoy proxy under high load?*
