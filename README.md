@@ -2,13 +2,13 @@
 
 ## 1) Summary
 
-This repository demonstrates how to achieve high throughput and low latencies with an Envoy sidecar when using Istio service mesh. With this demo, you can deploy 3 Java (Spring Boot WebFlux) microservices and a PostgreSQL database in Kubernetes (GKE). You can then run a series of load tests against the demo application both with and without Istio sidecars enabled.
+This repository demonstrates how to achieve high throughput and low latencies with an Envoy sidecar when using Istio service mesh. With this demo, you can deploy 3 Java (Spring Boot WebFlux) microservices and a PostgreSQL database in Kubernetes (GKE). You can then run a series of load tests against the demo application both with and without Istio's Envoy sidecars enabled.
 
-The demo application will have an end-to-end p95 latency of only 10 ms at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database. Adding the Envoy sidecars introduces latency that can be mitigated with proper sizing and scaling of the pods and their CPU utilization.
+The demo application will have an end-to-end p95 latency of ~10 ms at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database. Adding the Envoy sidecars introduces latency that can be mitigated with proper sizing and scaling of the pods and their CPU utilization.
 
 **TODO: Image**
 
-Optionally, you may scale this demo up to 28,000 RPS with an end-to-end p95 latency of 28 ms. This demonstrates a more constrained cluster that is consuming a higher level of CPU and memory resources, but is still able to maintain acceptable performance.
+You may also scale this demo up to 28,000 RPS with an end-to-end p95 latency ~28 ms. This demonstrates a more constrained cluster that is consuming a higher level of CPU and memory resources, but is still able to maintain acceptable performance.
 
 Ultimately, this demo shows that with best practices for deploying applications at scale on Kubernetes, Envoy sidecars are up to the task for low latency and high throughput applications.
 
