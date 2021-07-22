@@ -23,9 +23,10 @@
 
 ### Analysis
 
-1. For the p95 latency of 10 ms, the split between microservice/sidecar for a pod is 5ms/5ms given the lower bound of p95 latency for the microservice is 5 ms without the sidecar
+1. For the p95 latency of 10 ms, the split between microservice/sidecar for a pod is approximately 5ms/5ms given the lower bound of p95 latency for the microservice is 5 ms without the sidecar
 2. Per #1, the vertical CPU scaling benefits both the microservice and the sidecar
-3. Per #2, it can be inferred that the sidecar adds about 1 CPU per pod (1 CPU out of 2.9 CPU total per pod)
+3. It can be inferred that the sidecar adds about 1 CPU per pod (1 CPU out of 2.9 CPU total per pod) by comparing non-sidecar/with-sidecar CPU performance 
+   (28775m total CPU with sidecar - 18811m total CPU without sidecar = 9964m total for sidecar / 10 pods = 996m per sidecar per pod)
 4. Per #3, this lines up with Istio docs stating the [Envoy proxy consumes 0.35 CPU per 1000 requests](https://istio.io/latest/docs/ops/deployment/performance-and-scalability/). In this case, each microservice is processing 3333 RPS
 5. Per #1, with 5ms additional p95 latency due to the sidecars, and each sidecar ingress or egress adds approx. 0.7 ms for the p95 latency (5 ms / 7 ingresses and egresses)
 6. Per #5, for an equal balance of 3 sidecar ingress, and 3 sidecar egress (ignoring the database sidecar ingress), ~4.3 ms of p95 latency is introduced
