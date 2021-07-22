@@ -1,4 +1,4 @@
-# Submillisecond Envoy Sidecars
+# High Throughput, Low Latency Microservices in Istio
 
 ## 1) Summary
 

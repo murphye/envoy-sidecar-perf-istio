@@ -1,0 +1,1 @@
+gcloud container clusters delete load-test-envoy-sidecars-cluster --zone us-central1-a

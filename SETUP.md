@@ -12,7 +12,7 @@ gcloud config set compute/zone us-central1-a
 gcloud config set compute/region us-central-1
 ```
 
-To run all three demos, you need to create a 9-node cluster with a machine type of `e2-highcpu-16`. This will create a 144 core cluster, so don't forget to shut down your cluster after creating it! For Demo #2, a 5-node cluster would suffice, but for Demo #3 a 9-node cluster is required.
+To run all three demos, you need to create a 9-node cluster with a machine type of `e2-highcpu-16`. This will create a 144 core cluster, so don't forget to shut down your cluster after creating it!
 
 To minimize latency, the high-CPU, 16 core machine type was used because CPU is more important than memory for running the load tests. As such, each machine only has 16 GB of memory.
 
@@ -62,7 +62,7 @@ istioctl verify-install
 You can then find the `EXTERNAL-IP` for Istio Ingress by running:
 
 ```
-GATEWAY_IP=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+export GATEWAY_IP=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 echo $GATEWAY_IP
 ```
 
@@ -90,4 +90,6 @@ export PATH=$PATH:.
 hey
 ```
 
-**You must use the `$GATEWAY_IP` for Istio Ingress that you captured previously when you run `hey` as shown during the Demo exercises.**
+**You must use the `$GATEWAY_IP` for Istio Ingress that you captured previously when you run `hey` as shown during the Demo exercises.** 
+
+In your VM, set an environment variable such as `export GATEWAY_IP=35.202.51.57`
