@@ -19,7 +19,7 @@
 * Running throttled load tests against a microservices application will demonstrate much better performance while also allowing vertical scaling of CPU to accomodate the sidecar
 * For a non-sidecar/with-sidecar comparison:
 * Replication of 3: p95 latency increased by 20%, RPS was cut by 3%
-* Replication of 3: CPU usage increased 99%, Memory increased 2% (likely due to lower RPS)
+* Replication of 3: CPU usage increased 99% (this is a good thing), Memory increased 2%
 
 ### Analysis
 
