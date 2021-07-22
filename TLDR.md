@@ -43,6 +43,6 @@
 ## Takeaways (Java Microservice with a Sidecar)
 
 1. For applications requiring high throughput and low latency, target approx. 3333 RPS per pod with a sidecar
-2. Per #1, this will give a predicable 1 CPU per Envoy proxy CPU overhead requires to maintain high RPS and low latencies 
+2. Per #1, this will give a predictable 1 CPU per Envoy proxy CPU overhead requires to maintain high RPS and low latencies 
 3. Per #1, for a Netty-based Java microservice, target ~3 CPU per pod with a sidecar for maximum performance
 4. Per #3, if less than ~3 CPU is consumed per pod, adjust # of client connections and throttling of load test
