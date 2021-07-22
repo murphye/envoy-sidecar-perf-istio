@@ -257,7 +257,7 @@ Mem Total: 28280Mi
 
 ### Throttled Load Test
 
-The throttling of the load test was intended to keep the RPS about the same. This results in a more apples-to-apples comparison as opposed to an unthrottled load test that doesn't offer baseline to compare against.
+The throttling of the load test was intended to keep the RPS about the same. This results in a more apples-to-apples comparison as opposed to an unthrottled load test that doesn't offer baseline to compare against. We can then identify what the "cost" is to maintain RPS and latency when adding the Envoy sidecars.
 
 #### No Sidecar 
 * RPS: 10647
@@ -273,6 +273,10 @@ The throttling of the load test was intended to keep the RPS about the same. Thi
 
 ### Performance Takeaway
 
-The big takeaway here is the CPU total for the throttled load test. For 9 microservice pods, and 1 database pod, all runnning with sidecars, double the CPU is required to meet the performance requirements as opposed to without the sidecar. With the Envoy sidecars, 28.3 CPU cores are required to meet the performance requirements, but without the Envoy sidecars, 14.5 CPU cores are required. 
+The big takeaway here is the CPU total for the throttled load test. For 3 microservices (and a replication of 3 each for 9 pods total), and 1 database pod, all runnning with sidecars, double the CPU is required to meet the performance requirements as opposed to without the sidecar. 
 
-The key to maintaining performance when employing the Istio sidecars is maximizing CPU utilization with proper deployment scaling, tuning, and testing. **Using more CPU  is not a bad thing**, as the benefits offered by Envoy sidecars and a service mesh are often worth the extra CPU required to maintain high throughput and low latency.
+With the Envoy sidecars, 28.3 CPU cores are required to meet the performance requirements, but without the Envoy sidecars, 14.5 CPU cores are required. Given that there are 10 pods in total, each Envoy sidecar needs appromimately 1.4 CPU to maintain this level of performance.
+
+In this scenario, the Envoy sidecars only added 2 ms to the total p95 latency. Given that there are 3 service calls, and a database query for each request, that equates to 0.3 ms added for each Envoy ingress or egress from the sidecar containers. However, the calculation isn't that simple, as some of the additional CPU cycles consumed may have further improved the microservice application performance therfore helping to balance out the additonal latency added by the Envoy sidecar. Collecting addtional metrics showing how much CPU Envoy is consuming vs. the microservice would determine exactly how much latency the sidecars are adding.
+
+The key to maintaining performance when employing the Envoy sidecars is maximizing CPU utilization with proper deployment scaling, tuning, and testing. **Using more CPU  is not a bad thing**, as the benefits offered by Envoy sidecars and a service mesh are often worth the extra CPU required while maintaining performance.
