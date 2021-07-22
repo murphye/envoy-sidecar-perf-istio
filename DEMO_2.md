@@ -280,3 +280,8 @@ With the Envoy sidecars, 28.3 CPU cores are required to meet the performance req
 In this scenario, the Envoy sidecars only added 2 ms to the total p95 latency. Given that there are 3 service calls, and a database query for each request, that equates to 0.3 ms added for each Envoy ingress or egress from the sidecar containers. However, the calculation isn't that simple, as some of the additional CPU cycles consumed may have further improved the microservice application performance therfore helping to balance out the additonal latency added by the Envoy sidecar. Collecting addtional metrics showing how much CPU Envoy is consuming vs. the microservice would determine exactly how much latency the sidecars are adding.
 
 The key to maintaining performance when employing the Envoy sidecars is maximizing CPU utilization with proper deployment scaling, tuning, and testing. **Using more CPU  is not a bad thing**, as the benefits offered by Envoy sidecars and a service mesh are often worth the extra CPU required while maintaining performance.
+
+### Open Question
+
+*Can swithing sidecar communication to Unix Domain Sockets reduce the CPU overhead of the Envoy proxy under high load?*
+
