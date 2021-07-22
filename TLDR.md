@@ -31,7 +31,7 @@
 6. Per #5, **for a microservice that has both sidecar ingress and egress traffic, the sidecar adds approx 1.4 ms of p95 latency**
 7. Per #6, the Istio docs state that the ["Envoy proxy added 2.65ms to the p90"](https://istio.io/latest/docs/ops/deployment/performance-and-scalability/), which is almost double my observed numbers
 
-### Takeaways (Sidecar/Envoy Proxy)
+## Takeaways (Sidecar/Envoy Proxy)
 
 1. For best performance of a pod with the sidecar, the goal should be to "spike" the CPU usage as much as possible for the microservice pod; this CPU spike will benefit both the microservice and the Envoy proxy
 1. CPU spikes can only be triggered by proper load testing with throttled connections; unthrottled load tests do not result in CPU spikes and therefore poor performance
