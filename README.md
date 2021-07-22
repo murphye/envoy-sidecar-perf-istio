@@ -4,7 +4,7 @@
 
 This repository demonstrates how to achieve high throughput and low latencies with an Envoy sidecar when using Istio service mesh. With this demo, you can deploy 3 Java (Spring Boot WebFlux) microservices and a PostgreSQL database in Kubernetes (GKE). You can then run a series of load tests against the demo application both with and without Istio sidecars enabled.
 
-At scale, you will see the delta of latency for Envoy sidecar ingress/egress measure to be less than 1 millisecond. This enables the demo application to have an end-to-end p95 latency of only 10 ms, at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database.
+The demo application will have an end-to-end p95 latency of only 10 ms at 10,000 RPS, while passing through 7 Envoy sidecar ingresses or egresses across 3 microservices and a database. Adding the Envoy sidecars introduces latency that can be mitigated with proper sizing and scaling of the pods and their CPU utilization.
 
 **TODO: Image**
 
@@ -40,7 +40,7 @@ This demo shows how the Envoy sidecar can severely impact the performance of an 
 
 ## 5) [Demo #2 (Achieving Low Latency at 10K RPS)](DEMO_2.md)
 
-This demo shows how the Envoy sidecar does not severely impact performance when the application is properly deployed and scaled. Load testing is done in accordance with Performance Requirements #1.
+This **key** demo shows how the Envoy sidecar does not severely impact RPS and latency when the application is properly deployed and scaled. Load testing is done in accordance with Performance Requirements #1.
 
 ## 6) [Demo #3 (Achieving 28K RPS in a Saturated Cluster)](DEMO_3.md)
 
