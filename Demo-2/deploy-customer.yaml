@@ -24,7 +24,7 @@ kind: Deployment
 metadata:
   name: customer
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: customer
